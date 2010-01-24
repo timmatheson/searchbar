@@ -19,7 +19,7 @@ class Search
   private
   
   def self.sanitize(keyword)
-    keyword.gsub(/^[A-Za-z0-9]/i)
+    keyword.gsub(/^[A-Za-z0-9 _]/i,"")
   end
   
   def self.ignore_pattern
