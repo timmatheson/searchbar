@@ -3,7 +3,7 @@ class Search
     result = []
     return result if keyword.blank?
     keyword = sanitize(keyword)
-    pattern = /(\w?)#{keyword}(\_?)(\w?)(.?)(png|jpg|jpeg|gif|tiff|psd|pdf)?/i
+    pattern = /(#{keyword}|\d+|(\w+\_+\w+)|#{keyword}\.(png$|jpg$|jpeg$|gif$|pdf$|psd$))/i
     Dir.entries(SEARCH_PATH).each do |ent|
       if !File.directory?(ent) && ent =~ pattern
         result << ent
@@ -15,7 +15,7 @@ class Search
   private
   
   def self.sanitize(keyword)
-    keyword.gsub(/^[A-Za-z0-9 _]/i,"")
+    keyword.gsub(/^[A-Za-z0-9 \_]/i,"")
   end
   
   def self.ignore_pattern
