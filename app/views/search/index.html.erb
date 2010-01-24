@@ -1,0 +1,11 @@
+<% title "Search" %>
+
+<% form_remote_for "", :url => query_path do %>
+  <%= text_field_tag :q %><br />
+  <%= submit_tag "Search" %>
+<% end %>
+
+<ul id="results">
+</ul>
+
+
