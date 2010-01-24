@@ -1,24 +1,17 @@
 class Search
-  def self.query(keyword)
-    result = []
-    return result if keyword.blank?
-    keyword = sanitize(keyword)
-    pattern = /(#{keyword}|\d+|(\w+\_+\w+)|#{keyword}\.(png$|jpg$|jpeg$|gif$|pdf$|psd$))/i
-    Dir.entries(SEARCH_PATH).each do |ent|
-      if !File.directory?(ent) && ent =~ pattern
-        result << ent
-      end
+  def self.query(keyword)    
+    results = []
+    Parser.search do |parser|
+      parser.path = SEARCH_PATH
+      parser.find( sanitize(keyword), results)
     end
-    (result - ignore_pattern)
+    results
   end
   
   private
-  
+    
   def self.sanitize(keyword)
     keyword.gsub(/^[A-Za-z0-9 \_]/i,"")
   end
-  
-  def self.ignore_pattern
-    [".","..",".DS_Store",".svn",".git"]
-  end
+
 end

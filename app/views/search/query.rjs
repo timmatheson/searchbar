@@ -1,0 +1,7 @@
+if @results
+  page.replace_html("results","")
+  page.replace_html("image_count", @results.size)
+  @results.each do |result|
+    page.insert_html(:top, :results, :partial => "result", :locals => {:result => result })
+  end
+end

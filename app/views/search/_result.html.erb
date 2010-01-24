@@ -1,5 +1,5 @@
 <li>
-  <%= image_tag result, :height => 100 %><br />
-  <%= link_to result, "/images/#{result}" %>
+  <%= lightbox_to(result.fetch(0), ("images/" + result.fetch(0)), 
+    result.fetch(0).titleize) %>
 </li>
   
