@@ -5,11 +5,7 @@ class Search
     keyword = sanitize(keyword)
     pattern = /(\w?)#{keyword}(\_?)(\w?)(.?)(png|jpg|jpeg|gif|tiff|psd|pdf)?/i
     Dir.entries(SEARCH_PATH).each do |ent|
-      if File.directory?(ent) && ent =~ pattern
-        Dir.entries(ent).each do |sub_ent|
-          result << sub_ent if sub_ent =~ pattern
-        end
-      elsif ent =~ pattern
+      if !File.directory?(ent) && ent =~ pattern
         result << ent
       end
     end
