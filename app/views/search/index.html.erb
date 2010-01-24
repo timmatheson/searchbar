@@ -1,8 +1,7 @@
 <% title "Search" %>
 
 <% form_remote_for "", :url => query_path do %>
-  <%= text_field_tag :q %><br />
-  <%= submit_tag "Search" %>
+  Search: <%= text_field_tag :q, {}, :onkeyup => "this.form.onsubmit()", :autocomplete => "OFF" %>
 <% end %>
 
 <ul id="results">

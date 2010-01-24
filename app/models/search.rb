@@ -1,17 +1,23 @@
 class Search
   def self.query(keyword)
     result = []
-    pattern = /(.+)#{keyword}(.+)/i
-    Dir.entries(File.dirname(__FILE__) + "/../../public/images").each do |ent|
+    return result if keyword.blank?
+    pattern = /(\w?)#{keyword}(\w?)(.?)(png|jpg|jpeg|gif|tiff|psd|pdf)?/i
+    Dir.entries(SEARCH_PATH).each do |ent|
       if File.directory?(ent) && ent =~ pattern
         Dir.entries(ent).each do |sub_ent|
           result << sub_ent if sub_ent =~ pattern
         end
-      else
+      elsif ent =~ pattern
         result << ent
       end
     end
-    result -= [".","..",".DS_Store",".svn",".git"]
-    result
+    (result - ignore_pattern)
+  end
+  
+  private
+  
+  def self.ignore_pattern
+    [".","..",".DS_Store",".svn",".git"]
   end
 end
