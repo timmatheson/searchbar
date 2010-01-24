@@ -6,7 +6,7 @@ class SearchController < ApplicationController
       page << "$('results').innerHTML = '';"
       if @results
         @results.each do |result|
-          page.insert_html(:top, :results, "<li><a href='images/#{result}'>#{result}</a></li>")
+          page.insert_html(:top, :results, "<li><a href='images/#{result}'><img src='images/#{result}' height='100' /></a></li>")
         end
       end
     end

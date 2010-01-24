@@ -79,3 +79,9 @@ a {
   font-size: 12px;
   list-style: disc;
 }
+
+
+ul#results li{
+  display: inline;
+  padding: 1em;
+}
