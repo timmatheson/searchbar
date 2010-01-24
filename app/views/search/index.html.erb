@@ -1,7 +1,7 @@
-<% title "Search" %>
+<% title "Search for Images" %>
 
 <% form_remote_for "", :url => query_path do %>
-  Search: <%= text_field_tag :q, {}, :onkeyup => "this.form.onsubmit()", :autocomplete => "OFF" %>
+  <label for="q" class="large_text bold_text">Search:</label> <%= text_field_tag :q, {}, :onkeyup => "this.form.onsubmit()", :autocomplete => "OFF", :size => 30, :class => "large_text bold_text" %> <span class"large_text bold_text image_count" id="image_count">1&nbsp;</span>
 <% end %>
 
 <ul id="results">
